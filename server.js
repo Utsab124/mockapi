@@ -5,9 +5,10 @@ const middleware = jsonServer.defaults();
 const port = process.env.PORT || 4000;
 require("dotenv").config();
 
-const checkToken = (req, res, next) => {
+const checkToken = async(req, res, next) => {
   if (req.headers.token !== "bearer token123") {
-    res.send(400, "Invalid acess token");
+   await res.send(400, "Invalid acess token");
+    return;
   } else {
     next();
   }
